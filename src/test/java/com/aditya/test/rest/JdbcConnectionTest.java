@@ -13,39 +13,48 @@ import org.junit.Test;
 import com.aditya.test.rest.dao.ManageEmployee;
 import com.aditya.test.rest.modal.Employee;
 
-public class JdbcConnectionTest {
+public class JdbcConnectionTest
+{
 
-	ManageEmployee manageEmployee = new ManageEmployee();
-	//@Test
-	public void test() {
+    ManageEmployee manageEmployee = new ManageEmployee();
 
-		try {
-			//Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from emp_table");
-			printRs(rs);
-				assertNotNull(stmt.execute("SELECT 1"));
-		} catch (SQLException  e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	void printRs(ResultSet rs) throws SQLException {
-	  while(rs.next()) {
-		System.out.println("[ ID : "+rs.getInt("emp_id")+" , Name : "+rs.getString("emp_name")+" ]");  
-	  }
-	}
+    //@Test
+    public void test()
+    {
 
-	//@Test
-	public void testInsert() {
-			Employee emp = new Employee();
-			emp.setEmp_id(5);
-			emp.setEmp_name("Anjali");
-			emp.setSalary(10000);
-			int i = manageEmployee.addEmployee(emp);
-			System.out.println(i);
-				assertNotNull(i);
-	}
+        try
+        {
+            //Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from emp_table");
+            printRs(rs);
+            assertNotNull(stmt.execute("SELECT 1"));
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    void printRs(ResultSet rs) throws SQLException
+    {
+        while (rs.next())
+        {
+            System.out.println("[ ID : " + rs.getInt("emp_id") + " , Name : " + rs.getString("emp_name") + " ]");
+        }
+    }
+
+    //@Test
+    public void testInsert()
+    {
+        Employee emp = new Employee();
+        emp.setEmp_id(5);
+        emp.setEmp_name("Anjali");
+        emp.setSalary(10000);
+        int i = manageEmployee.addEmployee(emp);
+        System.out.println(i);
+        assertNotNull(i);
+    }
 }
